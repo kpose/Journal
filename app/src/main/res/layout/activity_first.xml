@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".FirstActivity">
 
     <LinearLayout
@@ -19,6 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#ECF0F1"
+            android:background="#229954"
             android:text="SIGN INTO ACCOUNT" />
 
         <Button
@@ -26,6 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#F4F6F7"
+            android:background="#7B241C"
+            android:layout_marginTop="30dp"
             android:text="CREATE A NEW ACCOUNT" />
     </LinearLayout>
 
