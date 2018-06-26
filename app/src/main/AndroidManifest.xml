@@ -21,11 +21,12 @@
         <activity
             android:name=".FirstActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".user_sign.RegisterActivity"
-            android:label="Register"/>
-        <activity android:name=".user_sign.LoginActivity"/>
+            android:label="Register" />
+        <activity android:name=".user_sign.LoginActivity" />
+        <activity android:name=".NewNoteActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
