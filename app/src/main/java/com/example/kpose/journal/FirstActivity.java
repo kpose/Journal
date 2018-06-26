@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.kpose.journal.user_sign.LoginActivity;
 import com.example.kpose.journal.user_sign.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -35,7 +36,7 @@ public class FirstActivity extends AppCompatActivity {
         signin_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signin();
+                login();
             }
         });
 
@@ -47,7 +48,9 @@ public class FirstActivity extends AppCompatActivity {
         startActivity(signupIntent);
     }
 
-    private void signin(){
+    private void login(){
+        Intent logIntent = new Intent(FirstActivity.this, LoginActivity.class);
+        startActivity(logIntent);
 
     }
 
