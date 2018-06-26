@@ -19,6 +19,9 @@
             android:id="@+id/signin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:background="@color/green"
+            android:textStyle="bold"
             android:layout_gravity="center"
             android:text="SIGN INTO ACCOUNT" />
 
@@ -27,6 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@color/brown"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
             android:text="CREATE A NEW ACCOUNT" />
     </LinearLayout>
 
@@ -39,7 +46,8 @@
         android:layout_marginTop="120dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/brown"
+        android:textStyle="bold"
         android:text="WELCOME TO
 YOUR PERSONAL JOURNAL" />
 </RelativeLayout>
