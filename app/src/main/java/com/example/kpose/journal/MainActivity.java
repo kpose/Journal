@@ -1,14 +1,17 @@
 package com.example.kpose.journal;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,16 +66,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final NoteViewHolder viewHolder, NoteModel model, int position) {
 
-                String noteId = getRef(position).getKey();
+                final String noteId = getRef(position).getKey();
 
                 fNotesDatabase.child(noteId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String title = dataSnapshot.child("title").getValue().toString();
-                        String timestamp = dataSnapshot.child("timestamp").getValue().toString();
+                        if (dataSnapshot.hasChild("title")&& dataSnapshot.hasChild("timestamp")) {
+                            String title = dataSnapshot.child("title").getValue().toString();
+                            String timestamp = dataSnapshot.child("timestamp").getValue().toString();
 
-                        viewHolder.setNoteTitle(title);
-                        viewHolder.setNoteTime(timestamp);
+                            viewHolder.setNoteTitle(title);
+                            viewHolder.setNoteTime(timestamp);
+
+                            viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(MainActivity.this, NewNoteActivity.class);
+                                    intent.putExtra("noteId", noteId);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
                     }
 
                     @Override
@@ -120,4 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
 }
+
+

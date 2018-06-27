@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,10 +34,25 @@ public class NewNoteActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference fNotesDatabase;
 
+    private Menu mainMenu;
+    private String noteID = "no";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_note);
+
+        try {
+            noteID = getIntent().getStringExtra("noteId");
+
+            if (noteID.equals("no")) {
+                mainMenu.getItem(0).setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
         btnCreate = findViewById(R.id.new_note_btn);
         etTitle = findViewById(R.id.new_note_title);
@@ -42,6 +60,10 @@ public class NewNoteActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.new_note_toolbar);
 
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         fNotesDatabase = FirebaseDatabase.getInstance().getReference().child("Notes").child(firebaseAuth.getCurrentUser().getUid());
 
@@ -101,5 +123,49 @@ public class NewNoteActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.new_note_menu, menu);
+
+        mainMenu = menu;
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.new_note_delete_btn:
+                if (!noteID.equals("no")){
+                    deleteNote();
+                }
+                break;
+        }
+        return true;
+    }
+
+    private void deleteNote() {
+        fNotesDatabase.child(noteID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(NewNoteActivity.this, "NOTE DELETED", Toast.LENGTH_SHORT).show();
+                    noteID = "no";
+                    finish();
+                }else{
+                    Log.e("NewNoteActivity", task.getException().toString() );
+                    Toast.makeText(NewNoteActivity.this, "ERROR!  " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
