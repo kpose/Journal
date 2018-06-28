@@ -26,7 +26,8 @@
             android:name=".user_sign.RegisterActivity"
             android:label="Register" />
         <activity android:name=".user_sign.LoginActivity" />
-        <activity android:name=".NewNoteActivity"></activity>
+        <activity android:name=".NewNoteActivity"
+            android:label="New Note"></activity>
     </application>
 
 </manifest>

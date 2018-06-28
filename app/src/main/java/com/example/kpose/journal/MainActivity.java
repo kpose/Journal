@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         mNotesList.setHasFixedSize(true);
         mNotesList.setLayoutManager(gridLayoutManager);
+        //gridLayoutManager.setReverseLayout(true);
+        //gridLayoutManager.setStackFromEnd(true);
+        mNotesList.addItemDecoration(new GridSpacing(2,dpToPx(10), true));
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -49,19 +53,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         updateUI();
+
+        loadData();
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
+            }
+
+    private void loadData(){
+        Query query = fNotesDatabase.orderByChild("timestamp");
         FirebaseRecyclerAdapter<NoteModel, NoteViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<NoteModel, NoteViewHolder>(
 
 
                 NoteModel.class,
                 R.layout.single_note_layout,
                 NoteViewHolder.class,
-                fNotesDatabase
+                query
         ) {
             @Override
             protected void populateViewHolder(final NoteViewHolder viewHolder, NoteModel model, int position) {
@@ -76,7 +86,10 @@ public class MainActivity extends AppCompatActivity {
                             String timestamp = dataSnapshot.child("timestamp").getValue().toString();
 
                             viewHolder.setNoteTitle(title);
-                            viewHolder.setNoteTime(timestamp);
+                            //viewHolder.setNoteTime(timestamp);
+
+                            GetPostTime getPostTime = new GetPostTime();
+                            viewHolder.setNoteTime(getPostTime.getPostTime(Long.parseLong(timestamp), getApplicationContext()));
 
                             viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
                                 @Override

@@ -38,9 +38,16 @@ public class NewNoteActivity extends AppCompatActivity {
     private DatabaseReference fNotesDatabase;
 
     private Menu mainMenu;
-    private String noteID = "no";
+    private String noteID;
 
     private boolean isExist;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.new_note_menu, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +57,10 @@ public class NewNoteActivity extends AppCompatActivity {
         try {
             noteID = getIntent().getStringExtra("noteId");
 
-            if (noteID.equals("no")) {
-                mainMenu.getItem(0).setVisible(false);
-
-                isExist = false;
-            }else{
+            if (!noteID.trim().equals("")) {
                 isExist = true;
+            }else{
+                isExist = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,16 +178,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
 
-        getMenuInflater().inflate(R.menu.new_note_menu, menu);
-
-        mainMenu = menu;
-
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -193,8 +189,10 @@ public class NewNoteActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.new_note_delete_btn:
-                if (!noteID.equals("no")){
+                if (isExist) {
                     deleteNote();
+                }else {
+                    Toast.makeText(this, "NOTHING TO DELETE", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

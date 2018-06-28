@@ -28,11 +28,13 @@
 
             <TextView
                 android:id="@+id/note_title"
-                android:layout_width="match_parent"
+                android:layout_width="156dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
+                android:textStyle="bold"
+                android:background="#95A5A6"
                 android:maxLines="5"
                 android:text="Note Title"
                 android:textColor="@android:color/black" />
@@ -44,6 +46,9 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Updated Time"
+                android:background="@color/green"
+                android:textColor="#ffffff"
+                android:textStyle="italic|bold"
                 android:textSize="12sp" />
         </LinearLayout>
 

@@ -28,7 +28,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/black" />
@@ -38,9 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="#A6ACAF"
             android:ems="10"
             android:gravity="top"
+            android:layout_marginTop="3dp"
             android:hint="Type Thoughts"
             android:inputType="textMultiLine"
             android:padding="10dp" />
