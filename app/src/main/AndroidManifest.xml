@@ -26,8 +26,7 @@
             android:name=".user_sign.RegisterActivity"
             android:label="Register" />
         <activity android:name=".user_sign.LoginActivity" />
-        <activity android:name=".NewNoteActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NewNoteActivity"></activity>
     </application>
 
 </manifest>

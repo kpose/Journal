@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.main_new_note_btn:
-            Intent newIntent = new Intent(MainActivity.this, NewNoteActivity.class);
-            startActivity(newIntent);
-            break;
+                Intent newIntent = new Intent(MainActivity.this, NewNoteActivity.class);
+                startActivity(newIntent);
+                break;
         }
 
         return true;
@@ -140,5 +140,3 @@ public class MainActivity extends AppCompatActivity {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 }
-
-

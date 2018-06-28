@@ -68,7 +68,7 @@ public class NewNoteActivity extends AppCompatActivity {
         etContent = findViewById(R.id.new_note_content);
         mToolbar = findViewById(R.id.new_note_toolbar);
 
-        setSupportActionBar(mToolbar);
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
