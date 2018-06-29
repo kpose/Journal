@@ -54,53 +54,68 @@ public class MainActivity extends AppCompatActivity {
 
         updateUI();
 
-        loadData();
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        loadData();
 
-            }
+    }
 
-    private void loadData(){
+    private void loadData() {
         Query query = fNotesDatabase.orderByChild("timestamp");
         FirebaseRecyclerAdapter<NoteModel, NoteViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<NoteModel, NoteViewHolder>(
-
 
                 NoteModel.class,
                 R.layout.single_note_layout,
                 NoteViewHolder.class,
                 query
+
         ) {
             @Override
             protected void populateViewHolder(final NoteViewHolder viewHolder, NoteModel model, int position) {
-
                 final String noteId = getRef(position).getKey();
 
                 fNotesDatabase.child(noteId).addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild("title")&& dataSnapshot.hasChild("timestamp")) {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild("title") && dataSnapshot.hasChild("timestamp")) {
                             String title = dataSnapshot.child("title").getValue().toString();
                             String timestamp = dataSnapshot.child("timestamp").getValue().toString();
 
                             viewHolder.setNoteTitle(title);
-                            //viewHolder.setNoteTime(timestamp);
+                            viewHolder.setNoteTime(timestamp);
 
                             GetPostTime getPostTime = new GetPostTime();
                             viewHolder.setNoteTime(getPostTime.getPostTime(Long.parseLong(timestamp), getApplicationContext()));
 
                             viewHolder.noteCard.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(View v) {
+                                public void onClick(View view) {
                                     Intent intent = new Intent(MainActivity.this, NewNoteActivity.class);
                                     intent.putExtra("noteId", noteId);
                                     startActivity(intent);
                                 }
                             });
                         }
+
+
                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

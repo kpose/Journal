@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.firebaseui:firebase-ui-database:2.1.0'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
