@@ -12,12 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            android:screenOrientation:"portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".FirstActivity"
@@ -26,8 +21,18 @@
             android:name=".user_sign.RegisterActivity"
             android:label="Register" />
         <activity android:name=".user_sign.LoginActivity" />
-        <activity android:name=".NewNoteActivity"
-            android:label="New Note"></activity>
+        <activity
+            android:name=".NewNoteActivity"
+            android:label="New Note" />
+        <activity android:name=".GoogleLoginActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

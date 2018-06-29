@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         mNotesList = findViewById(R.id.main_notes_list);
 
-        gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
         mNotesList.setHasFixedSize(true);
         mNotesList.setLayoutManager(gridLayoutManager);
