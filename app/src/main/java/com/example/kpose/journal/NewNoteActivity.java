@@ -116,6 +116,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
                 }
 
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -137,6 +138,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
                 fNotesDatabase.child(noteID).updateChildren(updateMap);
                 Toast.makeText(this, "Note Updated", Toast.LENGTH_SHORT).show();
+                finish();
             }else {
                 //Create A New Note
 
@@ -157,12 +159,14 @@ public class NewNoteActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     Toast.makeText(NewNoteActivity.this, "Note Added Successfully", Toast.LENGTH_SHORT).show();
+                                    finish();
 
                                 } else {
                                     Toast.makeText(NewNoteActivity.this, "ERROR!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
 
                     }
                 });
@@ -177,8 +181,6 @@ public class NewNoteActivity extends AppCompatActivity {
         }
 
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

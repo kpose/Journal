@@ -13,4 +13,15 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/logout_butto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:elevation="26dp"
+        android:src="@drawable/ic_power_settings_new_black_24dp"/>
+
 </RelativeLayout>

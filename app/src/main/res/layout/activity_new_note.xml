@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:hint="Enter Title"
+            android:hint="TITLE"
             android:padding="10dp" />
 
         <View
@@ -42,7 +42,7 @@
             android:ems="10"
             android:gravity="top"
             android:layout_marginTop="3dp"
-            android:hint="Type Thoughts"
+            android:hint="What Happened?"
             android:inputType="textMultiLine"
             android:padding="10dp" />
 
